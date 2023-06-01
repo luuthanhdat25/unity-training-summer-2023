@@ -1,0 +1,17 @@
+# Rider
+.idea/
+
+# Unity generated files
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Unity auto-generated
+*_Data/
+
+# Visual Studio Code
+.vscode/
