@@ -45,7 +45,11 @@
     <Analyzer Include="D:\Unity\2022.2.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\RepeatMonoBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+     <Compile Include="Assets\Scripts\Projectile\PlayerProjectileMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
      <Folder Include="Assets" />
@@ -56,7 +60,7 @@
      <Folder Include="Assets\Art\Sprites\Props\Previews" />
      <Folder Include="Assets\Art\Tile" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-Ladder" />
-     <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Level\Scenes" />
      <None Include="Assets\Art\Sprites\public-license.txt" />
      <Folder Include="Assets\Art\Sprites\Characters\Player" />
      <Folder Include="Assets\Art" />
@@ -64,11 +68,13 @@
      <Folder Include="Assets\Art\Sprites\Fx\Sprites\Big-Explosion" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\fly-eye" />
      <Folder Include="Assets\Scripts\Player" />
+     <Folder Include="Assets\Scripts\Projectile" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-shoot" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-spin" />
      <Folder Include="Assets\Art\Sprites\Previews" />
      <Folder Include="Assets\Art\Sprites\Props\Spritesheets" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\Previews" />
+     <Folder Include="Assets\Level\Prefabs" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-idle" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Ghost-fury" />
@@ -103,12 +109,14 @@
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Fireball" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Ghost-shocked" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites" />
+     <Folder Include="Assets\Animations\Player" />
      <Folder Include="Assets\Art\Sprites\Props\Sprites\Fan" />
      <Folder Include="Assets\Art\Sprites\Fx\fx" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Walk" />
      <Folder Include="Assets\Art\Sprites\Environment\Layers\props" />
      <Folder Include="Assets\Art\Sprites\Environment\Layers" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\Aseprite" />
+     <Folder Include="Assets\Animations" />
      <Folder Include="Assets\Art\Sprites\Fx" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-jump" />
      <Reference Include="UnityEngine">

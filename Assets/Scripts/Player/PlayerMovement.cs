@@ -1,35 +1,45 @@
 using System;
+using DefaultNamespace;
+using Player;
 using UnityEngine;
 
 public class PlayerMovement : RepeatMonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private PlayerCollision playerCollision;
-    [SerializeField] private Animator animator;
+    [SerializeField] private InputManager inputManager;
+    [SerializeField] private PlayerAnimator playerAnimator;
     
     
     [SerializeField] private float moveSpeed = 5f;
     private bool isFacingRight = true;
-    private float moveVectorHorizontal;
 
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private bool jumpInput;
     
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float raycastDistance = 1.3f;
     
-    public float raycastDistance = 1.3f;
-    public LayerMask groundLayer;
 
-    private RaycastHit2D hitLeft;
+    /*private RaycastHit2D hitLeft;
     private RaycastHit2D hitRight;
     [SerializeField] private float paddingLeftRayCast = 0.5f;
-    [SerializeField] private float paddingRightRayCast = 0.5f;
+    [SerializeField] private float paddingRightRayCast = 0.5f;*/
 
-    [SerializeField] private float overlapDistance = 1.3f;
+    [SerializeField] private float overlapDistance = 0.9f;
+    [SerializeField] private float overlapRadius = 0.5f;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadRigidbody2D();
-        this.LoadPlayerCollision();
+        LoadInputManager();
+        LoadRigidbody2D();
+        LoadPlayerCollision();
+    }
+    
+    private void LoadInputManager()
+    {
+        if (this.inputManager != null) return;
+        this.inputManager = FindObjectOfType<InputManager>();
+        Debug.LogWarning(gameObject.name + "Load InputManager Component");
     }
 
     private void LoadRigidbody2D()
@@ -48,48 +58,37 @@ public class PlayerMovement : RepeatMonoBehaviour
 
     private void Update()
     {
-        CheckInput();
-        ChangeAnimaiton();
+        if (inputManager == null) return;
+        playerAnimator.CheckRunAnimation(inputManager);
         ChangeRotation();
     }
 
-    private void CheckInput()
-    {
-        GetInputVector();
-        GetJumpInput();
-    }
-
-    private void ChangeAnimaiton()
-    {
-        animator.SetFloat("rawInput", Mathf.Abs(moveVectorHorizontal));
-    }
-
-    private void GetInputVector() => moveVectorHorizontal = Input.GetAxis("Horizontal");
-    private void GetJumpInput() => jumpInput = Input.GetAxis("Jump") > 0;
+    
     
     private void ChangeRotation()
     {
-        if (moveVectorHorizontal < 0 && isFacingRight)
+        if (inputManager.GetInputDirection() < 0 && isFacingRight)
             FlipPlayer();
-        else if (moveVectorHorizontal > 0 && !isFacingRight)
+        else if (inputManager.GetInputDirection() > 0 && !isFacingRight)
             FlipPlayer();
     }
     
     private void FlipPlayer()
     {
         isFacingRight = !isFacingRight;
-        SwapRaycastPadding();
+        //SwapRaycastPadding();
         if (transform.parent.rotation.y == 0) transform.parent.Rotate(0, 180, 0);
         else  transform.parent.Rotate(0, -180, 0);
     }
 
-    private void SwapRaycastPadding()
+    /*private void SwapRaycastPadding()
     {
         (paddingLeftRayCast, paddingRightRayCast) = (paddingRightRayCast, paddingLeftRayCast);
-    }
+    }*/
 
     private void FixedUpdate()
     {
+        if (inputManager == null) return;
         MoveHorizontal();
         Jump();
     }
@@ -97,14 +96,31 @@ public class PlayerMovement : RepeatMonoBehaviour
     private void MoveHorizontal()
     {
         Vector2 movement = rigidbody.velocity;
-        movement.x = moveVectorHorizontal * moveSpeed;
+        movement.x = inputManager.GetInputDirection() * moveSpeed;
         rigidbody.velocity = movement;
     }
 
     private void Jump()
     {
-        if (!IsGroundedOverLap() || !jumpInput) return;
+        if (!IsGroundedOverLap() || !inputManager.GetJumpInput()) return;
         rigidbody.AddForce(Vector2.up * jumpForce);
+    }
+    
+    //Using Overlap
+    public bool IsGroundedOverLap()
+    {
+        Vector2 originPosition = transform.parent.position;
+        originPosition.y -= overlapDistance;
+        Collider2D colliders = Physics2D.OverlapCircle(originPosition, overlapRadius, groundLayer);
+        return colliders;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector2 originPosition = transform.parent.position;
+        originPosition.y -= overlapDistance;
+        Gizmos.DrawWireSphere(originPosition, overlapRadius);
     }
     
     //Using Raycast
@@ -130,21 +146,6 @@ public class PlayerMovement : RepeatMonoBehaviour
         Gizmos.DrawLine(originPosition + new Vector3(-paddingLeftRayCast,0f,0f), originPosition + new Vector3(-paddingLeftRayCast, -raycastDistance, 0));
         Gizmos.DrawLine(originPosition + new Vector3(paddingRightRayCast,0f,0f), originPosition + new Vector3(paddingRightRayCast, -raycastDistance, 0));
     }*/
-    
-    //Using Overlap
-    public bool IsGroundedOverLap()
-    {
-        Vector2 originPosition = transform.parent.position;
-        originPosition.y -= raycastDistance;
-        Collider2D colliders = Physics2D.OverlapCircle(originPosition, overlapDistance, groundLayer);
-        return colliders;
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector2 originPosition = transform.parent.position;
-        originPosition.y -= raycastDistance;
-        Gizmos.DrawWireSphere(originPosition, overlapDistance);
-    }
+    public bool GetIsFacingRight() => this.isFacingRight;
 }
