@@ -45,13 +45,20 @@
     <Analyzer Include="D:\Unity\2022.2.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Damage\DamageReceiver.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\Projectile\PlayerProjectileDamageSender.cs" />
      <Compile Include="Assets\Scripts\RepeatMonoBehaviour.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+     <Compile Include="Assets\Scripts\Damage\DamageSender.cs" />
+     <Compile Include="Assets\Scripts\Enemy\LizardMovement.cs" />
      <Compile Include="Assets\Scripts\Projectile\PlayerProjectileMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\Enemy\LizardDamageSender.cs" />
+     <Compile Include="Assets\Scripts\Enemy\LizardDamageReceiver.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
+     <Compile Include="Assets\Scripts\Projectile\PlayerProjectileDamageReceiver.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Art\Sprites\Environment" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\spritesheet" />
@@ -85,6 +92,7 @@
      <Folder Include="Assets\Art\Sprites\Characters\Player\Previews" />
      <Folder Include="Assets\Art\Sprites\Fx\Spritesheets" />
      <Folder Include="Assets\Art\Sprites\Props" />
+     <Folder Include="Assets\Scripts\Damage" />
      <Folder Include="Assets\Art\Sprites\Fx\Sprites\Pick Feedback" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\Player-Hurt" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\lizard shoots" />
@@ -106,6 +114,7 @@
      <Folder Include="Assets\Art\Sprites\Fx\Sprites\Player-shoot-hit" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Idle" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites\player-run" />
+     <Folder Include="Assets\Scripts\Enemy" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Fireball" />
      <Folder Include="Assets\Art\Sprites\Characters\Enemies\sprites\Ghost-shocked" />
      <Folder Include="Assets\Art\Sprites\Characters\Player\sprites" />
