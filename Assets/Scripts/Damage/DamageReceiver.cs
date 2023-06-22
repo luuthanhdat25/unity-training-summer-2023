@@ -33,12 +33,6 @@ namespace DefaultNamespace.Damage
                 Deduct(damageSender.GetDamage());
                 damageSender.GetHit();
             }
-            
-            /*DamageSender damageSender = collider2D.transform.GetComponent<DamageSender>();
-            if (damageSender != null)
-            {
-                Deduct(damageSender.GetDamage());
-            }*/
         }
     }
 }

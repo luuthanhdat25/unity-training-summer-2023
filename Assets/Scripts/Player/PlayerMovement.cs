@@ -62,8 +62,6 @@ public class PlayerMovement : RepeatMonoBehaviour
         playerAnimator.CheckRunAnimation(inputManager);
         ChangeRotation();
     }
-
-    
     
     private void ChangeRotation()
     {
