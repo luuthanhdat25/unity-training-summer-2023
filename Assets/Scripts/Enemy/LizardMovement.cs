@@ -8,9 +8,9 @@ namespace DefaultNamespace.Enemy
     {
         [SerializeField] private Transform pointA;
         [SerializeField] private Transform pointB;
-        [SerializeField] private float forceJump = 4f;
+        [SerializeField] private float forceJump = 3f;
         [SerializeField] private float timeDelayJump = 1f;
-        [SerializeField] private float distanceToTarget = 0.5f;
+        [SerializeField] private float distanceToTarget = 3f;
         [SerializeField] private Animator lizzardAnimator;
         [SerializeField] private bool isMoveToA = true;
         private Rigidbody2D rigidbody2D;
@@ -18,7 +18,7 @@ namespace DefaultNamespace.Enemy
         
         private RaycastHit2D raycastHit2D;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private float raycastDistance = 1.3f;
+        [SerializeField] private float raycastDistance = 1.05f;
 
         private bool isJumpAnimation = false;
         
